@@ -12,10 +12,14 @@ function RecipeCards() {
       return (<Loading />);
     }
     return data.slice(PT).map((recipe) => (
-      <section key={ recipe.idMeal }>
-        <h1>{recipe.strMeal}</h1>
-        <img src={ recipe.strMealThumb } width="120" alt="recipe" />
-      </section>
+      <span key={ recipe.idMeal || recipe.idDrink }>
+        <h1>{recipe.strMeal || recipe.strDrink }</h1>
+        <img
+          src={ recipe.strMealThumb || recipe.strDrinkThumb }
+          width="120"
+          alt="recipe"
+        />
+      </span>
     ));
   };
 

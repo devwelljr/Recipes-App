@@ -6,13 +6,18 @@ import fetchFoods from '../services';
 
 function ContextProvider({ children }) {
   const [data, setData] = useState([]);
+  const type = window.location.pathname === '/comidas' ? 'meals' : 'drinks';
+  const action = window.location.pathname === '/comidas'
+    ? 'procuraComida' : 'procuraBebida';
+
   useEffect(() => {
     fetchFoods({
-      endPoints: 'food',
-      type: 'food',
-      action: 'procuraComida',
-    }).then((res) => setData(res.meals));
+      type,
+      action,
+    }).then((res) => setData(res[type]));
   }, []);
+
+  console.log(data);
 
   const contextValue = { data };
 
