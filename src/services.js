@@ -1,4 +1,4 @@
-const fetchFoods = async (type, action, value = '') => {
+const fetchFoods = async ({ type, action, value = '' }) => {
   const actions = {
     procuraComida: 'search.php?s=',
     procuraId: 'lookup.php?i=',
