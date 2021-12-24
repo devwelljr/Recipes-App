@@ -6,9 +6,22 @@ import fetchFoods from '../services';
 
 function ContextProvider({ children }) {
   const [data, setData] = useState([]);
+  const [category, setCategory] = useState([]);
+  const [foodfilter, setFoodFilter] = useState([]);
+
   const type = window.location.pathname === '/comidas' ? 'meals' : 'drinks';
   const action = window.location.pathname === '/comidas'
     ? 'procuraComida' : 'procuraBebida';
+
+  const handleClick = (event) => {
+    fetchFoods({
+      value: `${event.target.value}`,
+      type,
+      action: event.target.value !== 'clear' ? 'filterCategory' : `${action}`,
+    }).then((res) => setFoodFilter(res[type]));
+  };
+
+  console.log('filter', foodfilter);
 
   useEffect(() => {
     fetchFoods({
@@ -17,9 +30,14 @@ function ContextProvider({ children }) {
     }).then((res) => setData(res[type]));
   }, []);
 
-  console.log(data);
+  useEffect(() => {
+    fetchFoods({
+      type,
+      action: 'categories',
+    }).then((res) => setCategory(res[type]));
+  }, []);
 
-  const contextValue = { data };
+  const contextValue = { data, category, handleClick, foodfilter };
 
   return (
     <MyContext.Provider value={ contextValue }>

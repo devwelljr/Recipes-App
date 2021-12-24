@@ -14,8 +14,8 @@ const fetchFoods = async ({ type, action, value = '' }) => {
     primeiraLetra: 'search.php?f=',
   };
   const endPoints = {
-    drinks: 'https://www.thecocktaildb.com/api/json/v1/1/',
     meals: 'https://www.themealdb.com/api/json/v1/1/',
+    drinks: 'https://www.thecocktaildb.com/api/json/v1/1/',
   };
   const endPoint = `${endPoints[type]}${actions[action]}${value}`;
   const response = await fetch(endPoint);
