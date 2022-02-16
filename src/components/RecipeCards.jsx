@@ -8,6 +8,8 @@ function RecipeCards() {
   const NUM13 = 13;
   const NUM12 = 12;
 
+  console.log(foodfilter);
+
   const createCard = (request, num) => {
     if (data.length === 0) {
       return (<Loading />);
@@ -26,7 +28,7 @@ function RecipeCards() {
 
   return (
     <section>
-      { foodfilter.length === 0
+      { foodfilter === null || foodfilter.length === 0
         ? createCard(data, NUM13) : createCard(foodfilter, NUM12)}
     </section>
   );

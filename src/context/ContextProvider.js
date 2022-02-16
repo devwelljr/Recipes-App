@@ -14,14 +14,13 @@ function ContextProvider({ children }) {
     ? 'procuraComida' : 'procuraBebida';
 
   const handleClick = (event) => {
+    setFoodFilter([]);
     fetchFoods({
       value: `${event.target.value}`,
       type,
       action: event.target.value !== 'clear' ? 'filterCategory' : `${action}`,
     }).then((res) => setFoodFilter(res[type]));
   };
-
-  console.log('filter', foodfilter);
 
   useEffect(() => {
     fetchFoods({

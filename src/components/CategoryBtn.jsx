@@ -22,11 +22,10 @@ function CategorotyBtn() {
     <>
       { generateCategory() }
       <input
-        type="checkbox"
+        type="button"
         value="clear"
         onClick={ (e) => handleClick(e) }
       />
-      clear
     </>
   );
 }
