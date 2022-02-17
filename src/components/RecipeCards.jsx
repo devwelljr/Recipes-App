@@ -5,24 +5,27 @@ import Loading from './Loading';
 
 function RecipeCards() {
   const { data, foodfilter } = useContext(MyContext);
+
   const NUM13 = 13;
   const NUM12 = 12;
-
-  console.log(foodfilter);
 
   const createCard = (request, num) => {
     if (data.length === 0) {
       return (<Loading />);
     }
     return request.slice(0, num).map((recipe) => (
-      <>
+      <div key={ recipe.strMeal || recipe.strDrink }>
         <h1>{recipe.strMeal || recipe.strDrink }</h1>
-        <img
-          src={ recipe.strMealThumb || recipe.strDrinkThumb }
-          width="120"
-          alt="recipe"
-        />
-      </>
+        <button
+          type="button"
+        >
+          <img
+            src={ recipe.strMealThumb || recipe.strDrinkThumb }
+            width="120"
+            alt="recipe"
+          />
+        </button>
+      </div>
     ));
   };
 
